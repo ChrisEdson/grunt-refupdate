@@ -4,14 +4,14 @@
 
 ## Getting Started
 
-This plugin is designed to increment your asset references when loading from HTML.
+This plugin is designed to increment the file releases on your asset references in HTML.
 
 When loading resources, in order to avoid caching, it is common practice to append a file release to the asset name.
 
 ```HTML
 <head>
     ...
-    <link type="text/css" href="css/app.min.css?r=1" rel="stylesheet">
+    <link type="text/css" href="app.css?r=1" rel="stylesheet">
     ...
 </head>
 ```
@@ -19,14 +19,12 @@ When loading resources, in order to avoid caching, it is common practice to appe
 When a new verson has been authored and ready to go to live, this file release is then incremented, e.g.:
 
 ```HTML
-<link type="text/css" href="css/app.min.css?r=2" rel="stylesheet">
+<link type="text/css" href="app.css?r=2" rel="stylesheet">
 ```
 
 This plugin allows you to automate the incrementing of release numbers within your files when preparing to move your work to production.
 
-This plugin requires Grunt `~0.4.5`
-
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+This plugin requires Grunt `~0.4.5`. If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-refupdate --save-dev
@@ -55,6 +53,44 @@ grunt.initConfig({
   },
 });
 ```
+
+### Example Usage
+
+You have the following HTML, referencing both CSS and Javascript files to load.
+```HTML
+<head>
+    ...
+    <link type="text/css" href="app.css?r=1" rel="stylesheet">
+    ...
+</head>
+<body>
+  ...
+  <script type="text/javascript" src="app.js?r=1"></script>
+</body>
+```
+
+In order to match the release number, a regular expression is passed in. In this case, it will be:
+
+```js
+ /\?r=([0-9]+)/g
+```
+
+This will match both of the "?r=1" and select the "1" as the number to iterate. You can see how this matches here:[Regex101](http://regex101.com/r/iJ2zN9/2).
+
+You must also pass in the file reference, which here, is "views/index.html":
+
+```js
+refupdate: {
+    update_index: {
+        options: {
+            inputFile: "views/index.html",
+            regex:  /\?r=([0-9]+)/g
+        }
+    }
+}
+```
+
+If you wanted to increment this by something larger, say 5, pass "iterator: 5" as an option. If you wanted to create a new index file, pass this as "outputFile: views/index2.html".
 
 ### Options
 
