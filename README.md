@@ -6,7 +6,7 @@
 
 This plugin is designed to increment the file releases on your HTML asset references.
 
-When loading resources, in order to avoid caching, it is common practice to append a file release to the asset name.
+When loading resources, in order to avoid caching it is common practice to append a file release to the asset name.
 
 ```HTML
 <head>
