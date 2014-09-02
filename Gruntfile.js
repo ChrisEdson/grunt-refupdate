@@ -30,11 +30,18 @@ module.exports = function(grunt) {
 
         // Configuration to be run (and then tested)
         refupdate: {
-            default_options: {
+            single_replace: {
                 options: {
-                    inputFile: "test/input/default_options",
+                    inputFile: "test/input/single_replace",
                     regex: /abc([0-9]+)u1d/,
-                    outputFile: "tmp/default_options"
+                    outputFile: "tmp/single_replace"
+                }
+            },
+            multi_replace: {
+                options: {
+                    inputFile: "test/input/multi_replace",
+                    regex: /abc([0-9]+)u1d/g,
+                    outputFile: "tmp/multi_replace"
                 }
             },
             custom_iterator: {
@@ -73,9 +80,12 @@ module.exports = function(grunt) {
         grunt.file.write('tmp/temp_input', 'abc1235u1d\n');
     });
 
+    grunt.registerTask('refupdateTests',
+        ['refupdate:single_replace', 'refupdate:multi_replace', 'refupdate:custom_iterator', 'refupdate:no_output']);
+
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['jshint', 'clean', 'writeTemp', 'refupdate', 'nodeunit']);
+    grunt.registerTask('test', ['jshint', 'clean', 'writeTemp', 'refupdateTests', 'nodeunit']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['test']);

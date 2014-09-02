@@ -1,6 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
+// var refupdate = require('../tasks/refupdate.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -23,12 +24,21 @@ var grunt = require('grunt');
 */
 
 exports.refupdate = {
-    default_options: function(test) {
+    single_replace: function(test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/default_options');
-        var expected = grunt.file.read('test/expected/default_options');
-        test.equal(actual, expected, 'should describe what the default behavior is.');
+        var actual = grunt.file.read('tmp/single_replace');
+        var expected = grunt.file.read('test/expected/single_replace');
+        test.equal(actual, expected, 'should replace one reference');
+
+        test.done();
+    },
+    multi_replace: function(test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/multi_replace');
+        var expected = grunt.file.read('test/expected/multi_replace');
+        test.equal(actual, expected, 'should replace multiple references');
 
         test.done();
     },
@@ -37,7 +47,7 @@ exports.refupdate = {
 
         var actual = grunt.file.read('tmp/custom_iterator');
         var expected = grunt.file.read('test/expected/custom_iterator');
-        test.equal(actual, expected, 'should describe what custom iterator behavior is.');
+        test.equal(actual, expected, 'should iterate by 5');
 
         test.done();
     },
@@ -45,7 +55,7 @@ exports.refupdate = {
         test.expect(1);
 
         var actual = grunt.file.read('tmp/temp_input');
-        var expected = grunt.file.read('test/expected/default_options');
+        var expected = grunt.file.read('test/expected/single_replace');
 
         test.equal(actual, expected, 'should have overwritten the original file.');
 
