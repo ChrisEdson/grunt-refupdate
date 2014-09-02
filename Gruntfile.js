@@ -44,6 +44,12 @@ module.exports = function(grunt) {
                     outputFile: "tmp/custom_iterator",
                     iterator: 5
                 }
+            },
+            no_output: {
+                options: {
+                    inputFile: "tmp/temp_input",
+                    regex: /abc([0-9]+)u1d/
+                }
             }
         },
 
@@ -62,9 +68,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
+    // Create temporary file to overwrite in testing
+    grunt.registerTask('writeTemp', function() {
+        grunt.file.write('tmp/temp_input', 'abc1235u1d\n');
+    });
+
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['jshint', 'clean', 'refupdate', 'nodeunit']);
+    grunt.registerTask('test', ['jshint', 'clean', 'writeTemp', 'refupdate', 'nodeunit']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['test']);

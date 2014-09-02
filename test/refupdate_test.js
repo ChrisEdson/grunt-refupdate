@@ -23,10 +23,6 @@ var grunt = require('grunt');
 */
 
 exports.refupdate = {
-    setUp: function(done) {
-        // setup here if necessary
-        done();
-    },
     default_options: function(test) {
         test.expect(1);
 
@@ -42,6 +38,16 @@ exports.refupdate = {
         var actual = grunt.file.read('tmp/custom_iterator');
         var expected = grunt.file.read('test/expected/custom_iterator');
         test.equal(actual, expected, 'should describe what custom iterator behavior is.');
+
+        test.done();
+    },
+    no_output: function(test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/temp_input');
+        var expected = grunt.file.read('test/expected/default_options');
+
+        test.equal(actual, expected, 'should have overwritten the original file.');
 
         test.done();
     }

@@ -20,7 +20,7 @@ module.exports = function(grunt) {
             });
 
             // Set default output file to overwrite original if none specified
-            options.outputFile = options.outputFile || options.file;
+            options.outputFile = options.outputFile || options.inputFile;
 
             // Error if no file or regex specified
             if (options.inputFile === undefined) {
@@ -59,7 +59,6 @@ module.exports = function(grunt) {
                 grunt.log.error("Regex not found in file");
                 return false;
             }
-
             newContents = fileContents.replace(options.regex, increaseRef);
 
             grunt.file.write(options.outputFile, newContents);
