@@ -1,18 +1,18 @@
 # grunt-refupdate [![Build Status](https://travis-ci.org/ChrisEdson/grunt-refupdate.svg?branch=master)](https://travis-ci.org/ChrisEdson/grunt-refupdate)
 
-> Updates references in files to avoid caching of antiquated resources in production environments
+> Updates reference numbers in files to avoid caching of obsolete resources on the clientside
 
 ## Getting Started
 
-This plugin is designed to increment the file releases on your asset references in HTML.
+This plugin is designed to increment the file releases on your HTML asset references.
 
 When loading resources, in order to avoid caching, it is common practice to append a file release to the asset name.
 
 ```HTML
 <head>
-    ...
-    <link type="text/css" href="app.css?r=1" rel="stylesheet">
-    ...
+  ...
+  <link type="text/css" href="app.css?r=1" rel="stylesheet">
+  ...
 </head>
 ```
 
@@ -36,6 +36,8 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-refupdate');
 ```
 
+On NPM at [NPM](https://www.npmjs.org/package/grunt-refupdate).
+
 ## The "refupdate" task
 
 ### Overview
@@ -45,10 +47,12 @@ In your project's Gruntfile, add a section named `refupdate` to the data object 
 grunt.initConfig({
   refupdate: {
     options: {
-      // Task-specific options go here.
+      // Pass global options here
     },
     your_target: {
-      // Target-specific file lists and/or options go here.
+        options: {
+      // Pass task specific options here
+      }
     },
   },
 });
@@ -56,12 +60,12 @@ grunt.initConfig({
 
 ### Example Usage
 
-You have the following HTML, referencing both CSS and Javascript files to load.
+You have the following HTML, "views/index.html", referencing both CSS and Javascript files to load:
 ```HTML
 <head>
-    ...
-    <link type="text/css" href="app.css?r=1" rel="stylesheet">
-    ...
+  ...
+  <link type="text/css" href="app.css?r=1" rel="stylesheet">
+  ...
 </head>
 <body>
   ...
@@ -69,28 +73,32 @@ You have the following HTML, referencing both CSS and Javascript files to load.
 </body>
 ```
 
+You've just updated both of these files and want them to be pushed to a live environment. However, in their current state, the old versions may have been cached by the user. So let's update them to ?r=2.
+
 In order to match the release number, a regular expression is passed in. In this case, it will be:
 
 ```js
  /\?r=([0-9]+)/g
 ```
 
-This will match both of the "?r=1" and select the "1" as the number to iterate. You can see how this matches here:[Regex101](http://regex101.com/r/iJ2zN9/2).
+This will match both of the "?r=1" in the HTML and select the "1" as the number to iterate. You can see how this matches here: [Regex101](http://regex101.com/r/iJ2zN9/2). You can make the Regex as complex as you would like in order to make sure you're matching the correct text in your file.
 
-You must also pass in the file reference, which here, is "views/index.html":
+You must also pass in the file reference, which here is "views/index.html". The final refupdate configuration would look like:
 
 ```js
 refupdate: {
-    update_index: {
-        options: {
-            inputFile: "views/index.html",
-            regex:  /\?r=([0-9]+)/g
-        }
+  update_index: {
+    options: {
+      inputFile: "views/index.html",
+      regex:  /\?r=([0-9]+)/g
     }
+  }
 }
 ```
 
-If you wanted to increment this by something larger, say 5, pass "iterator: 5" as an option. If you wanted to create a new index file, pass this as "outputFile: views/index2.html".
+If you wanted to increment the releases by something larger, say 5, pass "iterator: 5" as an option. If you wanted to create a new index file, pass this as "outputFile: views/index2.html".
+
+This plugin is most useful when used in a chain when preparing a project for production; e.g. after file concatenation and minification.
 
 ### Options
 
