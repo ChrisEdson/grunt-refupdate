@@ -75,7 +75,7 @@ You have the following HTML, "views/index.html", referencing both CSS and Javasc
 
 You've just updated both of these files and want them to be pushed to a live environment. However, in their current state, the old versions may have been cached by the user. So let's update the references to "?r=2".
 
-In order to match the release number, a regular expression is passed in. In this case, it will be:
+In order to match the release number, a regular expression is passed in to refupdate as an option. In this case, it will be:
 
 ```js
  /\?r=([0-9]+)/g
