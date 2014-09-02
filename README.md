@@ -1,4 +1,4 @@
-# grunt-refupdate
+# grunt-refupdate [![Build Status](https://travis-ci.org/ChrisEdson/grunt-refupdate.svg?branch=master)](https://travis-ci.org/ChrisEdson/grunt-refupdate)
 
 > Updates references in files to avoid caching of antiquated resources in production environments
 
