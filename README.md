@@ -51,7 +51,7 @@ grunt.initConfig({
     },
     your_target: {
         options: {
-      // Pass task specific options here
+          // Pass task specific options here
       }
     },
   },
