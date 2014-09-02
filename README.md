@@ -36,7 +36,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-refupdate');
 ```
 
-The plugin is at NPM at [NPM](https://www.npmjs.org/package/grunt-refupdate).
+The plugin is on [the NPM Repository](https://www.npmjs.org/package/grunt-refupdate).
 
 ## The "refupdate" task
 
