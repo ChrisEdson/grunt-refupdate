@@ -73,7 +73,7 @@ You have the following HTML, "views/index.html", referencing both CSS and Javasc
 </body>
 ```
 
-You've just updated both of these files and want them to be pushed to a live environment. However, in their current state, the old versions may have been cached by the user. So let's update them to ?r=2.
+You've just updated both of these files and want them to be pushed to a live environment. However, in their current state, the old versions may have been cached by the user. So let's update the references to "?r=2".
 
 In order to match the release number, a regular expression is passed in. In this case, it will be:
 
@@ -83,7 +83,7 @@ In order to match the release number, a regular expression is passed in. In this
 
 This will match both of the "?r=1" in the HTML and select the "1" as the number to iterate. You can see how this matches here: [Regex101](http://regex101.com/r/iJ2zN9/2). You can make the Regex as complex as you would like in order to make sure you're matching the correct text in your file.
 
-You must also pass in the file reference, which here is "views/index.html". The final refupdate configuration would look like:
+You must also pass in the file reference. Here, that's "views/index.html". The final refupdate configuration would look like:
 
 ```js
 refupdate: {
@@ -96,9 +96,9 @@ refupdate: {
 }
 ```
 
-If you wanted to increment the releases by something larger, say 5, pass "iterator: 5" as an option. If you wanted to create a new index file, pass this as "outputFile: views/index2.html".
+If you wanted to increment the releases by something larger, say 5, pass "iterator: 5" as an option. If you wanted to create a new file rather than overwriting the original index.html, pass "outputFile: views/index2.html" as an option.
 
-This plugin is most useful when used in a chain when preparing a project for production; e.g. after file concatenation and minification.
+This plugin is most useful when used in a grunt chain when preparing a project for production; e.g. after file concatenation and minification.
 
 ### Options
 
@@ -129,7 +129,7 @@ Default value: `options.inputFile`
 If you'd like a new output file, specify it here. Otherwise, the original input file will be overwritten.
 
 ## Contributing
-Install with:
+Contributions very welcome! Install with:
 ```shell
 $ npm install
 ```
