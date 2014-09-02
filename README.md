@@ -16,7 +16,13 @@ When loading resources, in order to avoid caching, it is common practice to appe
 </head>
 ```
 
-When a new verson has been authored, this file release is then incremented
+When a new verson has been authored and ready to go to live, this file release is then incremented, e.g.:
+
+```HTML
+<link type="text/css" href="css/app.min.css?r=2" rel="stylesheet">
+```
+
+This plugin allows you to automate the incrementing of release numbers within your files when preparing to move your work to production.
 
 This plugin requires Grunt `~0.4.5`
 
@@ -90,6 +96,7 @@ $ grunt test
 ```
 
 ## Release History
+* 0.1.1 - Sept 02, 2014 - Bug fixes, new tests
 * 0.1.0 - Sept 02, 2014 - First release
 
 ## TODO
