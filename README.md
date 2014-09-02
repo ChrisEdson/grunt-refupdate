@@ -83,7 +83,7 @@ In order to match the release number, a regular expression is passed in to refup
 
 This will match both of the "?r=1" in the HTML and select the "1" as the number to iterate. You can see how this matches here: [Regex101](http://regex101.com/r/iJ2zN9/2). You can make the Regex as complex as you would like in order to make sure you're matching the correct text in your file.
 
-You must also pass in the file reference. Here, that's "views/index.html". The final refupdate configuration would look like:
+You must also pass in the file location. Here, that's "views/index.html". The final refupdate configuration would look like:
 
 ```js
 refupdate: {
