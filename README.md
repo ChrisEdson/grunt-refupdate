@@ -148,3 +148,4 @@ $ grunt test
 ## TODO
 * Add type handling of options
 * Add exception handling in tests
+* Fix handling of numbers before group matching

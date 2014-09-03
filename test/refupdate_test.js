@@ -57,8 +57,19 @@ exports.refupdate = {
         var actual = grunt.file.read('tmp/temp_input');
         var expected = grunt.file.read('test/expected/single_replace');
 
-        test.equal(actual, expected, 'should have overwritten the original file.');
+        test.equal(actual, expected, 'should have overwritten the original file');
 
         test.done();
     }
+    // multiple_numbers: function(test) {
+    //     test.expect(1);
+
+    //     var actual = grunt.file.read('tmp/multiple_numbers');
+    //     var expected = grunt.file.read('test/expected/multiple_numbers');
+
+    //     test.equal(actual, expected, 'should have only changed the last digit');
+
+    //     test.done();
+
+    // }
 };

@@ -57,6 +57,13 @@ module.exports = function(grunt) {
                     inputFile: "tmp/temp_input",
                     regex: /abc([0-9]+)u1d/
                 }
+            },
+            multiple_numbers: {
+                options: {
+                    inputFile: "test/input/multiple_numbers",
+                    regex: /[0-9]+\.[0-9]+\.([0-9]+)/,
+                    outputFile: "tmp/multiple_numbers"
+                }
             }
         },
 
@@ -81,7 +88,8 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('refupdateTests',
-        ['refupdate:single_replace', 'refupdate:multi_replace', 'refupdate:custom_iterator', 'refupdate:no_output']);
+        ['refupdate:single_replace', 'refupdate:multi_replace', 'refupdate:custom_iterator',
+        'refupdate:no_output', 'refupdate:multiple_numbers']);
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
