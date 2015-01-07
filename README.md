@@ -128,6 +128,13 @@ Default value: `options.inputFile`
 
 If you'd like a new output file, specify it here. Otherwise, the original input file will be overwritten.
 
+#### options.random (optional)
+
+Type: `Boolean`
+Default value: `false`
+
+If you'd like the replacement to be a random 4 character string, set this to be true.
+
 ## Contributing
 Contributions very welcome! Install with:
 ```shell
@@ -140,6 +147,7 @@ $ grunt test
 ```
 
 ## Release History
+* 0.1.4 - Jan 07, 2014 - Added ability to replace reference with random string
 * 0.1.3 - Sept 02, 2014 - Updated grunt dependencies
 * 0.1.2 - Sept 02, 2014 - Updated Readme
 * 0.1.1 - Sept 02, 2014 - Bug fixes, new tests

@@ -7,7 +7,7 @@
  */
 
 'use strict';
-
+var crypto = require('crypto');
 module.exports = function(grunt) {
 
     grunt.registerMultiTask('refupdate',
@@ -42,7 +42,13 @@ module.exports = function(grunt) {
             function increaseRef(match, group1) {
                 // Increase reference
                 ref = parseInt(group1);
-                newRef = ref + options.iterator;
+
+                // If options specify random, set reference as random string
+                if (options.random) {
+                    newRef = crypto.randomBytes(2).toString('hex');
+                } else {
+                    newRef = ref + options.iterator;
+                }
 
                 var firstHalf = match.substring(0, match.indexOf(group1));
                 var secondHalf = match.substring(match.indexOf(group1) + group1.length);
